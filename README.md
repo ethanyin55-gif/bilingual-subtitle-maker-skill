@@ -82,6 +82,37 @@ Then Codex edits the raw transcript into a final `.srt` and validates it:
 python3 skills/bilingual-subtitle-maker/scripts/validate_bilingual_srt.py "/path/to/final_bilingual.srt"
 ```
 
+## Example Request
+
+```text
+Use $bilingual-subtitle-maker to create review-ready bilingual SRT subtitles.
+
+Audio: /absolute/path/to/founder-interview.mp3
+Topic: An independent designer talks about building a toy brand and working with manufacturing partners
+Keywords: designer name, brand name, product line name, city names, factory terms
+Audience: Chinese-first reviewers
+Style: Natural documentary subtitles, not final broadcast copy
+```
+
+## Example Output
+
+```srt
+1
+00:00:00,000 --> 00:00:02,860
+我叫 Maya Chen
+So my name is Maya Chen
+
+2
+00:00:03,640 --> 00:00:06,200
+我是这个玩具品牌的创作者
+I am the creator of this toy brand
+
+3
+00:00:06,360 --> 00:00:10,420
+我们最早是在 2021 年开始合作
+We first started working together in 2021
+```
+
 ## Subtitle Rules
 
 - English speech: Chinese line first, English source line second

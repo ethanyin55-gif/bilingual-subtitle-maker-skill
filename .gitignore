@@ -1,0 +1,26 @@
+.DS_Store
+__pycache__/
+*.pyc
+
+# Audio and video inputs
+*.mp3
+*.wav
+*.m4a
+*.aac
+*.flac
+*.mp4
+*.mov
+
+# Generated subtitles and transcription outputs
+output/
+outputs/
+*.srt
+*.vtt
+*.tsv
+*.json
+
+# Whisper and model caches
+.whisper-models/
+*.pt
+*.bin
+*.safetensors

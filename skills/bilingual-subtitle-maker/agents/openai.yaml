@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bilingual Subtitle Maker"
+  short_description: "Make review-ready bilingual SRT subtitles"
+  default_prompt: "Use $bilingual-subtitle-maker to create bilingual SRT subtitles from this audio file and brief."

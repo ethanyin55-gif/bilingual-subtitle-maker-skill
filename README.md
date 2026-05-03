@@ -12,6 +12,7 @@ The skill is designed for edit-review workflows rather than final broadcast deli
 - Turns transcript-like output into subtitle-like cues
 - Produces Chinese-over-English bilingual SRT for English speech
 - Keeps Chinese speech Chinese-only by default
+- Verifies Chinese segments against the source audio instead of back-translating from mistaken English ASR
 - Removes only low-information speech clutter such as `um`, `uh`, obvious stutters, and accidental immediate repeats
 - Avoids dangling one-word subtitle tails
 - Keeps English to one on-screen line, targeting 50 characters or fewer
@@ -117,6 +118,8 @@ We first started working together in 2021
 
 - English speech: Chinese line first, English source line second
 - Chinese speech: Chinese-only by default
+- Chinese speech must be transcribed directly in Chinese, not translated back from mistaken English recognition
+- In mixed or uncertain audio, re-check suspicious segments and run a Chinese pass on Chinese speech when needed
 - English source: preserve original wording and sentence shape whenever possible
 - English cleanup: remove only obvious fillers, stutters, false starts, and immediate repeats that do not change meaning
 - Do not paraphrase, smooth, rewrite, or swap in cleaner phrasing just because it reads better

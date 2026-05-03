@@ -31,6 +31,13 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 
 2. Treat Whisper as the ear, not the editor. Read the raw `.json` word timestamps and rough `.srt`; then create a human subtitle pass.
 
+2.5. Verify language before translating:
+
+- If a segment is spoken in Chinese, transcribe it directly as Chinese.
+- Never take a Chinese segment misheard as English, then translate that English back into Chinese.
+- In mixed or uncertain audio, inspect suspicious segments and run a Chinese-language pass on Chinese speech when needed.
+- Treat language verification as mandatory for Chinese sections because mistranscribed English intermediates can drift far from the source.
+
 3. Apply language policy:
 
 - English speech: output two text lines, Chinese translation first and source-preserving English second.

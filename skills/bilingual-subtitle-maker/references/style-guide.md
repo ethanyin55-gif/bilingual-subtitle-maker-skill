@@ -5,6 +5,7 @@
 - English source audio: Chinese translation on line 1, English source on line 2.
 - Chinese source audio: Chinese-only by default.
 - Mixed audio: English segments bilingual; Chinese segments Chinese-only by default.
+- Chinese speech must be transcribed directly in Chinese, not reconstructed by translating mistaken English ASR.
 - Use `.srt` unless the user asks for another format.
 
 ## Timing

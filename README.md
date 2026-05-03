@@ -134,6 +134,9 @@ We first started working together in 2021
 - Do not anchor a later cue by pushing it after the previous cue's wrong out-time
 - Segment by actual spoken bursts, not by semantic full-sentence completion
 - If the speaker stops, trails off, breathes, or restarts, the subtitle should usually break there
+- Never place two different speakers inside the same cue
+- A speaker change always forces a new cue, even if the second speaker continues the same topic or sentence
+- If a handoff between speakers is ambiguous, split conservatively and review against the audio
 - Do not merge two spoken parts into one cue across a noticeable pause
 - Never bridge a multi-second silence just to keep a fuller sentence together
 - English line length: 50 characters or fewer
@@ -144,6 +147,7 @@ We first started working together in 2021
 - Use transcript text only as a content reference; do not let text semantics override the source audio timing
 - If one cue overlaps the next, treat that cue as wrong and re-check it against the audio instead of shifting all following cues later
 - Do not leave dangling tails such as `me`, `it`, `that`, or `to me`
+- Before delivery, review speaker handoffs so no cue combines words from two different people
 
 ## Privacy
 

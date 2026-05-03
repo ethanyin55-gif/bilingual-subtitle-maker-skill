@@ -17,6 +17,9 @@
 - Time each cue independently from its own spoken burst.
 - Segment by actual spoken bursts, not by semantic full-sentence completion.
 - If the speaker stops, breathes, trails off, or restarts, the subtitle should usually break there.
+- Never mix two different speakers in one cue.
+- A speaker change always starts a new cue, even if the topic or sentence flow continues.
+- If a speaker handoff is hard to hear, split conservatively and re-check the audio.
 - End cues at sentence ends, commas, or natural pauses.
 - Subtitle timing is stricter than sentence completeness.
 - Do not merge across a noticeable pause just to keep two related thoughts in one subtitle.
@@ -24,6 +27,7 @@
 - If one cue overlaps the next, fix that cue against the audio instead of shifting all later cues.
 - Use transcript text only as a reference for words and meaning; never let transcript semantics override actual audio timing.
 - Review long inter-cue gaps carefully in interview sections; they may signal missing subtitles rather than true silence.
+- Review speaker handoffs before delivery so no cue blends two voices together.
 - Avoid transcript-like long blocks.
 - Avoid mechanical splits that leave a single dangling word.
 

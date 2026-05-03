@@ -54,6 +54,9 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - Do not derive cue N+1 from cue N's out-time if cue N may already be wrong.
 - Split by actual spoken bursts, not by semantic full-sentence completion.
 - If the speaker stops, breathes, trails off, or restarts, that is usually a subtitle break.
+- Never place two different speakers inside the same cue.
+- A speaker change always forces a new cue, even when the second speaker is finishing, echoing, or directly answering the first speaker.
+- If the speaker handoff is ambiguous, split conservatively and confirm against the audio.
 - Split by spoken pauses, sentence restarts, commas, or natural pauses.
 - Subtitle timing is stricter than sentence completeness.
 - Do not merge two spoken parts into one cue across a noticeable pause just to make a fuller sentence.
@@ -94,6 +97,7 @@ Use the warnings to revise line length, lowercase starts, terminal punctuation, 
 - If the raw Chinese pass contains usable subtitle text that is absent from the final `.srt`, treat that as an assembly bug and fix it before delivery.
 - Do not mark the subtitle file complete while Chinese interview sections still have unexplained long gaps.
 - Do not mark the subtitle file complete while unresolved overlap errors still exist; fix the conflicting cue itself rather than cascading later cue times.
+- Do not mark the subtitle file complete while any cue still blends two different speakers; review speaker handoffs against the audio and split them apart.
 
 ## Resources
 

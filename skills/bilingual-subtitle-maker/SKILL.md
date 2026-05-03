@@ -49,6 +49,7 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 
 - Cue in-time should start when the sentence begins, not when the semantic keyword appears.
 - Cue out-time may hold slightly after speech for review readability.
+- Cue timing must come from the original audio, not from the transcribed sentence's semantic completeness.
 - Time each cue independently from its own spoken burst.
 - Do not derive cue N+1 from cue N's out-time if cue N may already be wrong.
 - Split by actual spoken bursts, not by semantic full-sentence completion.
@@ -58,6 +59,7 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - Do not merge two spoken parts into one cue across a noticeable pause just to make a fuller sentence.
 - Never bridge a multi-second silence between phrases or sentences.
 - If one cue overlaps or crowds the next cue, treat that cue as the local timing error and re-check it against the source audio instead of pushing downstream cues later.
+- Use transcript text only as a reference for wording and segmentation support; never let the transcript override what the source audio is doing in time.
 - Do not leave dangling one-word tails such as `me`, `it`, `that`, or `to me`.
 - Keep English source as close to the speaker's actual wording as possible.
 - Do not paraphrase, smooth, or replace phrasing just because a cleaner sentence sounds better.

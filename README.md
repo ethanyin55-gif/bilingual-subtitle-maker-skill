@@ -129,6 +129,7 @@ We first started working together in 2021
 - Do not paraphrase, smooth, rewrite, or swap in cleaner phrasing just because it reads better
 - If a line is too long, prefer splitting into another cue before compressing wording
 - Subtitle timing takes priority over sentence merging
+- Subtitle timing must follow the original audio, not the transcript's semantic shape
 - Time each cue independently from its own spoken burst
 - Do not anchor a later cue by pushing it after the previous cue's wrong out-time
 - Segment by actual spoken bursts, not by semantic full-sentence completion
@@ -140,6 +141,7 @@ We first started working together in 2021
 - No terminal punctuation at line ends
 - English line starts are capitalized
 - Split at spoken pauses, breath breaks, sentence restarts, commas, and natural pauses
+- Use transcript text only as a content reference; do not let text semantics override the source audio timing
 - If one cue overlaps the next, treat that cue as wrong and re-check it against the audio instead of shifting all following cues later
 - Do not leave dangling tails such as `me`, `it`, `that`, or `to me`
 

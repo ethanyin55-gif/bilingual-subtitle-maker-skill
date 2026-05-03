@@ -44,6 +44,9 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - Chinese speech: output Chinese-only unless the user explicitly asks for bilingual subtitles.
 - Mixed speech: English segments are bilingual; Chinese segments are Chinese-only by default.
 - Before final delivery, reconcile mixed interview sections against raw Chinese-pass transcripts so recovered Chinese lines are not dropped during assembly.
+- Apply the same source-preservation standard to Chinese subtitles that you apply to English source lines.
+- Do not smooth Chinese phrasing, rewrite discourse markers, or replace one connective with another just because it reads better.
+- Forbidden example: do not rewrite `下一个是欧洲市场` as `然后是欧洲市场`.
 
 4. Segment for subtitles, not transcripts:
 
@@ -75,6 +78,13 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - Keep meaningful discourse words when they affect tone, logic, character, or emphasis.
 - Preserve names, dates, numbers, colloquial phrasing, and source wording as much as practical.
 - Do not upgrade grammar, replace colloquial wording with neater wording, or substitute approximate equivalents such as changing `back in like 2018` into `around 2018` unless the user explicitly asks for cleanup beyond subtitle review use.
+
+5.5. Clean Chinese lightly:
+
+- Remove only obvious fillers such as `嗯`, `呃`, `hmmm`, clear stutters, immediate repeated words, and false starts that do not change meaning.
+- Preserve colloquial Chinese wording, connectives, discourse markers, sentence shape, names, dates, numbers, and emphasis as much as practical.
+- Do not rewrite Chinese into smoother narration, summary prose, or cleaner written language.
+- Do not replace approximate equivalents such as `下一个` with `然后`, `这个` with `这`, or other similar wording swaps unless the user explicitly asks for a polished rewrite instead of subtitles.
 
 6. Enforce screen readability:
 

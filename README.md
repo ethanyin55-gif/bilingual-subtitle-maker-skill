@@ -124,6 +124,10 @@ We first started working together in 2021
 - Chinese speech must be transcribed directly in Chinese, not translated back from mistaken English recognition
 - In mixed or uncertain audio, re-check suspicious segments and run a Chinese pass on Chinese speech when needed
 - Before delivery, reconcile Chinese interview sections against raw Chinese-pass transcripts so recovered lines are not omitted during final assembly
+- Chinese source text: preserve original wording and sentence shape whenever possible
+- Chinese cleanup: remove only obvious fillers, stutters, false starts, and immediate repeats that do not change meaning
+- Do not rewrite Chinese connectives, discourse markers, or phrasing just because a cleaner sentence reads better
+- Forbidden example: do not change `下一个是欧洲市场` into `然后是欧洲市场`
 - English source: preserve original wording and sentence shape whenever possible
 - English cleanup: remove only obvious fillers, stutters, false starts, and immediate repeats that do not change meaning
 - Do not paraphrase, smooth, rewrite, or swap in cleaner phrasing just because it reads better

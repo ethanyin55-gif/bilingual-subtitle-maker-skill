@@ -33,9 +33,13 @@
 
 ## Text
 
+- Keep Chinese as close to source wording and sentence shape as possible.
 - Keep English as close to source wording and sentence shape as possible.
 - Remove only meaningless fillers, obvious stutters, immediate repeats, and clear false starts that do not change meaning.
+- For Chinese, remove only obvious fillers such as `嗯`, `呃`, `hmmm`, clear stutters, immediate repeats, and false starts that do not change meaning.
 - Do not paraphrase, smooth, or swap in cleaner wording just because it reads better.
+- Do not rewrite Chinese connectives or discourse markers just to make the line read more smoothly.
+- Forbidden example: do not change `下一个是欧洲市场` into `然后是欧洲市场`.
 - Prefer another subtitle cue over rewriting the sentence.
 - Do not remove meaningful hesitation when it matters to character or story.
 - Translate for review clarity, not literary polish.

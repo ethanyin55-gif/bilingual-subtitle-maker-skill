@@ -17,8 +17,10 @@
 
 ## Text
 
-- Keep English close to source wording.
-- Remove meaningless fillers and obvious repeated mistakes.
+- Keep English as close to source wording and sentence shape as possible.
+- Remove only meaningless fillers, obvious stutters, immediate repeats, and clear false starts that do not change meaning.
+- Do not paraphrase, smooth, or swap in cleaner wording just because it reads better.
+- Prefer another subtitle cue over rewriting the sentence.
 - Do not remove meaningful hesitation when it matters to character or story.
 - Translate for review clarity, not literary polish.
 - Keep terminology consistent across the file.

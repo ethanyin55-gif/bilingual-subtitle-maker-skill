@@ -1,6 +1,6 @@
 ---
 name: bilingual-subtitle-maker
-description: Create review-ready Chinese-English SRT subtitles from audio files, transcripts, or rough cuts. Use when Codex needs to transcribe interview/documentary audio with Whisper, translate English speech for Chinese-first reviewers, preserve source wording, clean filler words, segment captions, control line length, and validate .srt timing/text for edit-review workflows.
+description: Create review-ready Chinese-English SRT subtitles from audio files, transcripts, or rough cuts. Use when Codex needs to transcribe interview/documentary audio with Whisper, translate English speech for Chinese-first reviewers, preserve source wording, do source-preserving cleanup only, segment captions, control line length, and validate .srt timing/text for edit-review workflows.
 ---
 
 # Bilingual Subtitle Maker
@@ -33,7 +33,7 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 
 3. Apply language policy:
 
-- English speech: output two text lines, Chinese translation first and cleaned English source second.
+- English speech: output two text lines, Chinese translation first and source-preserving English second.
 - Chinese speech: output Chinese-only unless the user explicitly asks for bilingual subtitles.
 - Mixed speech: English segments are bilingual; Chinese segments are Chinese-only by default.
 
@@ -43,13 +43,17 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - Cue out-time may hold slightly after speech for review readability.
 - Split by sentence, comma, or natural pause.
 - Do not leave dangling one-word tails such as `me`, `it`, `that`, or `to me`.
-- Keep English source close to the speaker. Do not paraphrase unless line length forces a small compression.
+- Keep English source as close to the speaker's actual wording as possible.
+- Do not paraphrase, smooth, or replace phrasing just because a cleaner sentence sounds better.
+- If a line is long, prefer splitting into another cue before compressing wording.
+- Only compress wording as a last resort after splitting is no longer practical.
 
 5. Clean English lightly:
 
-- Remove `um`, `uh`, repeated accidental words, and obvious false starts.
-- Keep meaningful discourse words when they affect tone or logic.
-- Preserve names, dates, numbers, and source phrasing as much as practical.
+- Remove `um`, `uh`, obvious stutters, immediate repeated words, and false starts that clearly do not change meaning.
+- Keep meaningful discourse words when they affect tone, logic, character, or emphasis.
+- Preserve names, dates, numbers, colloquial phrasing, and source wording as much as practical.
+- Do not upgrade grammar, replace colloquial wording with neater wording, or substitute approximate equivalents such as changing `back in like 2018` into `around 2018` unless the user explicitly asks for cleanup beyond subtitle review use.
 
 6. Enforce screen readability:
 

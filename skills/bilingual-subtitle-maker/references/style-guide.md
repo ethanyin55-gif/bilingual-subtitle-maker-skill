@@ -12,6 +12,9 @@
 - Use word-level timestamps when possible.
 - Start each cue when the spoken sentence or phrase begins.
 - End cues at sentence ends, commas, or natural pauses.
+- Subtitle timing is stricter than sentence completeness.
+- Do not merge across a noticeable pause just to keep two related thoughts in one subtitle.
+- Never hold one cue across a multi-second silence between spoken parts.
 - Avoid transcript-like long blocks.
 - Avoid mechanical splits that leave a single dangling word.
 

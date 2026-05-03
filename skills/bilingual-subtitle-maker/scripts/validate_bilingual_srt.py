@@ -18,6 +18,7 @@ ZH_COMFORT_LIMIT = 22
 ZH_REVIEW_LIMIT = 28
 EN_COMFORT_LIMIT = 50
 EN_REVIEW_LIMIT = 50
+MAX_CUE_DURATION_MS = 8000
 TERMINAL_PUNCT_RE = re.compile(r"[。．.,，!?？;；:：]$")
 FIRST_LATIN_RE = re.compile(r"[A-Za-z]")
 
@@ -87,6 +88,14 @@ def validate(cues: list[Cue]) -> tuple[list[str], list[str]]:
 
         if cue.start_ms < previous_end:
             errors.append(f"Cue {cue.index}: overlaps or goes backward from previous cue.")
+
+        duration_ms = cue.end_ms - cue.start_ms
+        if duration_ms > MAX_CUE_DURATION_MS:
+            warnings.append(
+                f"Cue {cue.index}: cue duration is long "
+                f"({duration_ms / 1000:.2f}s > {MAX_CUE_DURATION_MS / 1000:.2f}s). "
+                "Review for merged sentences or long silent holds."
+            )
 
         previous_end = cue.end_ms
 

@@ -42,6 +42,9 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - Cue in-time should start when the sentence begins, not when the semantic keyword appears.
 - Cue out-time may hold slightly after speech for review readability.
 - Split by sentence, comma, or natural pause.
+- Subtitle timing is stricter than sentence completeness.
+- Do not merge two spoken parts into one cue across a noticeable pause just to make a fuller sentence.
+- Never bridge a multi-second silence between phrases or sentences.
 - Do not leave dangling one-word tails such as `me`, `it`, `that`, or `to me`.
 - Keep English source as close to the speaker's actual wording as possible.
 - Do not paraphrase, smooth, or replace phrasing just because a cleaner sentence sounds better.

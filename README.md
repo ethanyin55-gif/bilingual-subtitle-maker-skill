@@ -121,6 +121,9 @@ We first started working together in 2021
 - English cleanup: remove only obvious fillers, stutters, false starts, and immediate repeats that do not change meaning
 - Do not paraphrase, smooth, rewrite, or swap in cleaner phrasing just because it reads better
 - If a line is too long, prefer splitting into another cue before compressing wording
+- Subtitle timing takes priority over sentence merging
+- Do not merge two spoken parts into one cue across a noticeable pause
+- Never bridge a multi-second silence just to keep a fuller sentence together
 - English line length: 50 characters or fewer
 - Chinese line length: target 22 characters, review limit 28
 - No terminal punctuation at line ends

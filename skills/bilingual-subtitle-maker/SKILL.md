@@ -49,12 +49,15 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 
 - Cue in-time should start when the sentence begins, not when the semantic keyword appears.
 - Cue out-time may hold slightly after speech for review readability.
+- Time each cue independently from its own spoken burst.
+- Do not derive cue N+1 from cue N's out-time if cue N may already be wrong.
 - Split by actual spoken bursts, not by semantic full-sentence completion.
 - If the speaker stops, breathes, trails off, or restarts, that is usually a subtitle break.
 - Split by spoken pauses, sentence restarts, commas, or natural pauses.
 - Subtitle timing is stricter than sentence completeness.
 - Do not merge two spoken parts into one cue across a noticeable pause just to make a fuller sentence.
 - Never bridge a multi-second silence between phrases or sentences.
+- If one cue overlaps or crowds the next cue, treat that cue as the local timing error and re-check it against the source audio instead of pushing downstream cues later.
 - Do not leave dangling one-word tails such as `me`, `it`, `that`, or `to me`.
 - Keep English source as close to the speaker's actual wording as possible.
 - Do not paraphrase, smooth, or replace phrasing just because a cleaner sentence sounds better.
@@ -88,6 +91,7 @@ Use the warnings to revise line length, lowercase starts, terminal punctuation, 
 - For every range that was re-run with `WHISPER_LANGUAGE=zh`, compare the recovered raw transcript against the final `.srt`.
 - If the raw Chinese pass contains usable subtitle text that is absent from the final `.srt`, treat that as an assembly bug and fix it before delivery.
 - Do not mark the subtitle file complete while Chinese interview sections still have unexplained long gaps.
+- Do not mark the subtitle file complete while unresolved overlap errors still exist; fix the conflicting cue itself rather than cascading later cue times.
 
 ## Resources
 

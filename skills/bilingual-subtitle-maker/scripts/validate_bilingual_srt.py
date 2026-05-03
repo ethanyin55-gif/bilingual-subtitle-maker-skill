@@ -88,7 +88,10 @@ def validate(cues: list[Cue]) -> tuple[list[str], list[str]]:
             errors.append(f"Cue {cue.index}: start time must be before end time.")
 
         if cue.start_ms < previous_end:
-            errors.append(f"Cue {cue.index}: overlaps or goes backward from previous cue.")
+            errors.append(
+                f"Cue {cue.index}: overlaps or goes backward from previous cue. "
+                "Re-check this cue's own timing against the audio instead of shifting later cues."
+            )
         elif previous_end >= 0:
             gap_ms = cue.start_ms - previous_end
             if gap_ms > MAX_INTERCUE_GAP_MS:

@@ -13,12 +13,14 @@
 
 - Use word-level timestamps when possible.
 - Start each cue when the spoken sentence or phrase begins.
+- Time each cue independently from its own spoken burst.
 - Segment by actual spoken bursts, not by semantic full-sentence completion.
 - If the speaker stops, breathes, trails off, or restarts, the subtitle should usually break there.
 - End cues at sentence ends, commas, or natural pauses.
 - Subtitle timing is stricter than sentence completeness.
 - Do not merge across a noticeable pause just to keep two related thoughts in one subtitle.
 - Never hold one cue across a multi-second silence between spoken parts.
+- If one cue overlaps the next, fix that cue against the audio instead of shifting all later cues.
 - Review long inter-cue gaps carefully in interview sections; they may signal missing subtitles rather than true silence.
 - Avoid transcript-like long blocks.
 - Avoid mechanical splits that leave a single dangling word.

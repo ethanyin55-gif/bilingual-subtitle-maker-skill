@@ -13,6 +13,7 @@ The skill is designed for edit-review workflows rather than final broadcast deli
 - Produces Chinese-over-English bilingual SRT for English speech
 - Keeps Chinese speech Chinese-only by default
 - Verifies Chinese segments against the source audio instead of back-translating from mistaken English ASR
+- Reconciles mixed-language interview sections so Chinese review-pass material is not dropped from the final SRT
 - Removes only low-information speech clutter such as `um`, `uh`, obvious stutters, and accidental immediate repeats
 - Avoids dangling one-word subtitle tails
 - Keeps English to one on-screen line, targeting 50 characters or fewer
@@ -83,6 +84,8 @@ Then Codex edits the raw transcript into a final `.srt` and validates it:
 python3 skills/bilingual-subtitle-maker/scripts/validate_bilingual_srt.py "/path/to/final_bilingual.srt"
 ```
 
+Before calling the file done, review warnings for long cue gaps and compare suspicious Chinese interview ranges against the raw Whisper JSON or any dedicated Chinese-pass clips.
+
 ## Example Request
 
 ```text
@@ -120,6 +123,7 @@ We first started working together in 2021
 - Chinese speech: Chinese-only by default
 - Chinese speech must be transcribed directly in Chinese, not translated back from mistaken English recognition
 - In mixed or uncertain audio, re-check suspicious segments and run a Chinese pass on Chinese speech when needed
+- Before delivery, reconcile Chinese interview sections against raw Chinese-pass transcripts so recovered lines are not omitted during final assembly
 - English source: preserve original wording and sentence shape whenever possible
 - English cleanup: remove only obvious fillers, stutters, false starts, and immediate repeats that do not change meaning
 - Do not paraphrase, smooth, rewrite, or swap in cleaner phrasing just because it reads better

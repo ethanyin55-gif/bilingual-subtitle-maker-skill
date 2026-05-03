@@ -43,6 +43,7 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - English speech: output two text lines, Chinese translation first and source-preserving English second.
 - Chinese speech: output Chinese-only unless the user explicitly asks for bilingual subtitles.
 - Mixed speech: English segments are bilingual; Chinese segments are Chinese-only by default.
+- Before final delivery, reconcile mixed interview sections against raw Chinese-pass transcripts so recovered Chinese lines are not dropped during assembly.
 
 4. Segment for subtitles, not transcripts:
 
@@ -74,17 +75,23 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 - No sentence-ending punctuation on either line.
 - Capitalize the first English letter of each subtitle line.
 
-7. Validate bilingual `.srt` files:
+7. Validate review `.srt` files:
 
 ```bash
 python3 scripts/validate_bilingual_srt.py "/path/to/final_bilingual.srt"
 ```
 
-Use the warnings to revise line length, lowercase starts, terminal punctuation, or timing overlaps.
+Use the warnings to revise line length, lowercase starts, terminal punctuation, timing overlaps, long cue durations, and suspicious cue gaps.
+
+8. Run a completeness check on Chinese interview sections:
+
+- For every range that was re-run with `WHISPER_LANGUAGE=zh`, compare the recovered raw transcript against the final `.srt`.
+- If the raw Chinese pass contains usable subtitle text that is absent from the final `.srt`, treat that as an assembly bug and fix it before delivery.
+- Do not mark the subtitle file complete while Chinese interview sections still have unexplained long gaps.
 
 ## Resources
 
 - `scripts/transcribe_audio.sh`: local Whisper transcription wrapper with word timestamp support.
-- `scripts/validate_bilingual_srt.py`: structural and style validator for Chinese-English two-line SRT files.
+- `scripts/validate_bilingual_srt.py`: structural and style validator for mixed review SRT files with zh-only and zh/en cues.
 - `assets/subtitle-brief.md`: reusable intake brief.
 - `references/style-guide.md`: compact style rules for review-copy bilingual subtitles.

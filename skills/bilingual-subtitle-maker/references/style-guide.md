@@ -6,6 +6,7 @@
 - Chinese source audio: Chinese-only by default.
 - Mixed audio: English segments bilingual; Chinese segments Chinese-only by default.
 - Chinese speech must be transcribed directly in Chinese, not reconstructed by translating mistaken English ASR.
+- Before delivery, compare Chinese review-pass transcript ranges against the final SRT so recovered Chinese lines are not dropped.
 - Use `.srt` unless the user asks for another format.
 
 ## Timing
@@ -18,6 +19,7 @@
 - Subtitle timing is stricter than sentence completeness.
 - Do not merge across a noticeable pause just to keep two related thoughts in one subtitle.
 - Never hold one cue across a multi-second silence between spoken parts.
+- Review long inter-cue gaps carefully in interview sections; they may signal missing subtitles rather than true silence.
 - Avoid transcript-like long blocks.
 - Avoid mechanical splits that leave a single dangling word.
 

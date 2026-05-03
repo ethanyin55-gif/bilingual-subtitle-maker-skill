@@ -19,6 +19,7 @@ ZH_REVIEW_LIMIT = 28
 EN_COMFORT_LIMIT = 50
 EN_REVIEW_LIMIT = 50
 MAX_CUE_DURATION_MS = 8000
+MAX_INTERCUE_GAP_MS = 3000
 TERMINAL_PUNCT_RE = re.compile(r"[。．.,，!?？;；:：]$")
 FIRST_LATIN_RE = re.compile(r"[A-Za-z]")
 
@@ -88,6 +89,14 @@ def validate(cues: list[Cue]) -> tuple[list[str], list[str]]:
 
         if cue.start_ms < previous_end:
             errors.append(f"Cue {cue.index}: overlaps or goes backward from previous cue.")
+        elif previous_end >= 0:
+            gap_ms = cue.start_ms - previous_end
+            if gap_ms > MAX_INTERCUE_GAP_MS:
+                warnings.append(
+                    f"Cue {cue.index}: gap before cue is long "
+                    f"({gap_ms / 1000:.2f}s > {MAX_INTERCUE_GAP_MS / 1000:.2f}s). "
+                    "Review for missing subtitles versus intentional silence."
+                )
 
         duration_ms = cue.end_ms - cue.start_ms
         if duration_ms > MAX_CUE_DURATION_MS:
@@ -99,13 +108,12 @@ def validate(cues: list[Cue]) -> tuple[list[str], list[str]]:
 
         previous_end = cue.end_ms
 
-        if len(cue.lines) != 2:
-            errors.append(f"Cue {cue.index}: expected exactly 2 text lines, got {len(cue.lines)}.")
+        if len(cue.lines) not in (1, 2):
+            errors.append(f"Cue {cue.index}: expected 1 or 2 text lines, got {len(cue.lines)}.")
             continue
 
-        zh_line, en_line = cue.lines
+        zh_line = cue.lines[0]
         zh_len = len(zh_line)
-        en_len = len(en_line)
         if zh_len > ZH_REVIEW_LIMIT:
             warnings.append(
                 f"Cue {cue.index}: Chinese line exceeds review limit "
@@ -116,33 +124,39 @@ def validate(cues: list[Cue]) -> tuple[list[str], list[str]]:
                 f"Cue {cue.index}: Chinese line exceeds comfort length "
                 f"({zh_len}/{ZH_COMFORT_LIMIT} chars)."
             )
-        if en_len > EN_REVIEW_LIMIT:
-            warnings.append(
-                f"Cue {cue.index}: English line exceeds review limit "
-                f"({en_len}/{EN_REVIEW_LIMIT} chars)."
-            )
-        elif en_len > EN_COMFORT_LIMIT:
-            warnings.append(
-                f"Cue {cue.index}: English line exceeds comfort length "
-                f"({en_len}/{EN_COMFORT_LIMIT} chars)."
-            )
         if not CJK_RE.search(zh_line):
             warnings.append(f"Cue {cue.index}: first line has no CJK characters.")
-        if not LATIN_RE.search(en_line):
-            warnings.append(f"Cue {cue.index}: second line has no Latin letters.")
         if TERMINAL_PUNCT_RE.search(zh_line):
             warnings.append(f"Cue {cue.index}: Chinese line ends with punctuation.")
-        if TERMINAL_PUNCT_RE.search(en_line):
-            warnings.append(f"Cue {cue.index}: English line ends with punctuation.")
-        first_latin = FIRST_LATIN_RE.search(en_line)
-        if first_latin and first_latin.group(0).islower():
-            warnings.append(f"Cue {cue.index}: English line starts with lowercase.")
+
+        if len(cue.lines) == 2:
+            en_line = cue.lines[1]
+            en_len = len(en_line)
+            if en_len > EN_REVIEW_LIMIT:
+                warnings.append(
+                    f"Cue {cue.index}: English line exceeds review limit "
+                    f"({en_len}/{EN_REVIEW_LIMIT} chars)."
+                )
+            elif en_len > EN_COMFORT_LIMIT:
+                warnings.append(
+                    f"Cue {cue.index}: English line exceeds comfort length "
+                    f"({en_len}/{EN_COMFORT_LIMIT} chars)."
+                )
+            if not LATIN_RE.search(en_line):
+                warnings.append(f"Cue {cue.index}: second line has no Latin letters.")
+            if TERMINAL_PUNCT_RE.search(en_line):
+                warnings.append(f"Cue {cue.index}: English line ends with punctuation.")
+            first_latin = FIRST_LATIN_RE.search(en_line)
+            if first_latin and first_latin.group(0).islower():
+                warnings.append(f"Cue {cue.index}: English line starts with lowercase.")
 
     return errors, warnings
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Validate a bilingual zh/en SRT file.")
+    parser = argparse.ArgumentParser(
+        description="Validate a review SRT file with bilingual zh/en cues and zh-only cues."
+    )
     parser.add_argument("srt", type=Path)
     args = parser.parse_args()
 

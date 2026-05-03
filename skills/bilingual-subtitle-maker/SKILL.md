@@ -41,7 +41,9 @@ Set `WHISPER_LANGUAGE=en` or `WHISPER_LANGUAGE=zh` when the language is known. A
 
 - Cue in-time should start when the sentence begins, not when the semantic keyword appears.
 - Cue out-time may hold slightly after speech for review readability.
-- Split by sentence, comma, or natural pause.
+- Split by actual spoken bursts, not by semantic full-sentence completion.
+- If the speaker stops, breathes, trails off, or restarts, that is usually a subtitle break.
+- Split by spoken pauses, sentence restarts, commas, or natural pauses.
 - Subtitle timing is stricter than sentence completeness.
 - Do not merge two spoken parts into one cue across a noticeable pause just to make a fuller sentence.
 - Never bridge a multi-second silence between phrases or sentences.

@@ -122,13 +122,15 @@ We first started working together in 2021
 - Do not paraphrase, smooth, rewrite, or swap in cleaner phrasing just because it reads better
 - If a line is too long, prefer splitting into another cue before compressing wording
 - Subtitle timing takes priority over sentence merging
+- Segment by actual spoken bursts, not by semantic full-sentence completion
+- If the speaker stops, trails off, breathes, or restarts, the subtitle should usually break there
 - Do not merge two spoken parts into one cue across a noticeable pause
 - Never bridge a multi-second silence just to keep a fuller sentence together
 - English line length: 50 characters or fewer
 - Chinese line length: target 22 characters, review limit 28
 - No terminal punctuation at line ends
 - English line starts are capitalized
-- Split at sentences, commas, and natural pauses
+- Split at spoken pauses, breath breaks, sentence restarts, commas, and natural pauses
 - Do not leave dangling tails such as `me`, `it`, `that`, or `to me`
 
 ## Privacy

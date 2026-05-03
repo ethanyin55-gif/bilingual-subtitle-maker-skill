@@ -11,6 +11,8 @@
 
 - Use word-level timestamps when possible.
 - Start each cue when the spoken sentence or phrase begins.
+- Segment by actual spoken bursts, not by semantic full-sentence completion.
+- If the speaker stops, breathes, trails off, or restarts, the subtitle should usually break there.
 - End cues at sentence ends, commas, or natural pauses.
 - Subtitle timing is stricter than sentence completeness.
 - Do not merge across a noticeable pause just to keep two related thoughts in one subtitle.
